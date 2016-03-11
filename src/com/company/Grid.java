@@ -10,9 +10,9 @@ import java.io.*;
 
 public class Grid {
 
-    public static String[][] makeBoard(int breedte, int hoogte) {
+    public static String[][] makeBoard(int breedte, int hoogte, String file) {
 
-        String[] input = Utilities.readFile("6x4_1.txt");
+        String[] input = Utilities.readFile(file);
         String[][] grid = new String[hoogte][breedte];
 
         System.out.println("je grid ziet er nu zo uit:");

@@ -50,7 +50,7 @@ public class Utilities {
             }
         }
 
-        // return de woorden die je gelzen hebt
+        // return de woorden die je gelezen hebt
         return readWords;
     }
 

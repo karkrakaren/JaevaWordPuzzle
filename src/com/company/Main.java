@@ -66,7 +66,7 @@ public class Main {
         woordenBoek = Utilities.createHashtable(woordenBoek);
 
         // maak een dubbele array van je grid
-        String[][] Board = Grid.makeBoard(breedte, hoogte);
+        String[][] Board = Grid.makeBoard(breedte, hoogte, "6x4_1.txt");
 
         // lees scores in
         String[] letterwaarde = Utilities.createScoreboard("jaeva_letterwaarden.txt");
