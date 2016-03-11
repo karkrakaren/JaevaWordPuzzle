@@ -63,10 +63,6 @@ public class Utilities {
         return output;
     }
 
-
-
-
-
         public static String [] createHashtable(String[] readWords){
 
             String[] woordenBoek = new String[readWords.length];
@@ -98,20 +94,13 @@ public class Utilities {
                 // stop een waarde in de array op een lege plek
                 if(woordenBoek[hash] == null || woordenBoek[hash].isEmpty())
                 {
-
                     woordenBoek[hash] = s;
-
                 }
                 else
                 {
                     // als er daar geen lege plek is, append dan je waarde eraan
                     woordenBoek[hash] += " " + s;
-
-
                 }
-
-
-
             }
 
             // laat zien dat er een hashtable gemaakt is
@@ -123,21 +112,22 @@ public class Utilities {
             return woordenBoek;
     }
 
-    public static String[] createScoreboard(String file){
+    public static int[] createScoreboard(String file){
 
         String[] stringscores = Utilities.readFile(file);
-        Integer[] scores = new Integer[stringscores.length];
+        int[] scores = new int[stringscores.length];
 
         for(int i = 0; i < scores.length; i++)
         {
-            scores = Integer.valueOf(stringscores[i].charAt(2));
+            String line = stringscores[i];
+            if(line.length() > 3) {
+                scores[i] = (Integer.valueOf(line.charAt(2)) - '0') + ('9' -'0');
+            } else {
+                scores[i] = Integer.valueOf(line.charAt(2)) - '0';
+            }
+            System.out.println(scores[i] + "," + line);
         }
 
-        for(String s: scores)
-        {
-
-            System.out.println(s);
-        }
-        return null;
+        return scores;
     }
 }

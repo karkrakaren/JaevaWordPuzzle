@@ -11,8 +11,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-
         // geef geen args mee
         if (args.length != 0)
         {
@@ -69,9 +67,6 @@ public class Main {
         String[][] Board = Grid.makeBoard(breedte, hoogte, "6x4_1.txt");
 
         // lees scores in
-        String[] letterwaarde = Utilities.createScoreboard("jaeva_letterwaarden.txt");
-
-
+        int[] letterwaarde = Utilities.createScoreboard("jaeva_letterwaarden.txt");
     }
-
 }
