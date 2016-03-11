@@ -16,13 +16,7 @@ public class ChooseWord {
     public void makeBoard() {
 
 
-        private static String[] readfile("6x4_1.txt") {
-            try {
-                letters = new BufferedReader(new FileReader("6x4_1.txt"));
-            }
-            catch(Exception e) {
-                System.out.println("Error.");
-            }
+
 
             Character[][] board = new Character[6][4];
             for(int i = 0; i < 6; i++){
