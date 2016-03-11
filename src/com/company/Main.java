@@ -2,118 +2,76 @@ package com.company;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 
 public class Main {
 
-    public static BufferedReader reader;
+    // om van een een ascii waarde een getal te maken
+    private static final int asciiwaarde = 48;
 
     public static void main(String[] args) {
 
 
-        String[] woordenBoek =  readFile("woordenlijst.txt");
-        String sample = "null" ;
-        String functie = "null" ;
 
-        /*// arg grootte 1
-        if (args.length == 1)
+        // geef geen args mee
+        if (args.length != 0)
         {
-            // is de file naam
-            sample = args[0];
-
-        }
-        else
-        {
-            System.out.println("\n\nArg size invalid!\nAdd sample.txt as args[0]!");
+            System.out.println("\n\n Arg size invalid! \n geen argumenten meegeven!");
             System.exit(1);
         }
-        */
+
+        // vraag user om hoogte van de grid
+        System.out.println("Geef hoogte in van je grid:\nmogelijke hoogtes: 6");
+
+
+        int hoogte = 0;
+
+        // met try en catch om errors te voorkomen
+        while(hoogte != 6)
+        {
+            hoogte = 0;
+            try {
+                // read wat de user input
+                hoogte = System.in.read();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("incorrecte waarde!");
+            }
+            // userinput is in ascii, dus doe -48 voor het getal
+            hoogte -= asciiwaarde;
+
+        }
+
+        // exact hetzelfde alleen nu voor de breedte (zie boven voor hoogte)
+        System.out.println("Geef breedte in van je grid:\nmogelijke breedes: 4");
+
+        int breedte = 0;
+
+        while (breedte != 4) {
+
+            try {
+                breedte = System.in.read();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("incorrecte waarde!");
+            }
+
+            breedte -= asciiwaarde;
+
+        }
+
+        // lees het woordenboek uit de file
+        String[] woordenBoek =  Utilities.readFile("woordenlijst.txt");
+        // maak hier een hashtable van
+        woordenBoek = Utilities.createHashtable(woordenBoek);
+
+        // maak een dubbele array van je grid
+        String[][] Board = Grid.makeBoard(breedte, hoogte);
+
+        // lees scores in
+        String[] letterwaarde = Utilities.createScoreboard("jaeva_letterwaarden.txt");
+
 
     }
-    // maakt een hashtable van het woordenboek
-    private static String[] readFile(String filename) {
-            try {
-                reader = new BufferedReader(new FileReader(filename));
-            }
-            // standaard foutmelding
-            catch(Exception e) {
-                System.out.println("Error.");
-            }
 
-            // array is x aantal lang
-            String[] readWords = new String[1000000];
-            // maak counter
-            int count = 0;
-
-            // vul je array met woorden
-            while(true) {
-                try {
-                    String word = reader.readLine();
-                    readWords[count] = word;
-                    if(word == null) {
-                        break;
-                    }
-                    //System.out.println(word);
-                    count++;
-                }
-                catch(Exception e) {
-                    System.out.println("Error.");
-                    break;
-                }
-            }
-
-            System.out.println(count);
-
-           String[] woordenBoek = new String[count];
-        int counter = 0;
-
-        for(String s: readWords)
-        {
-
-           if(s == null)
-           {
-               break;
-           }
-
-            System.out.println(counter);
-            counter++;
-
-            // maak hash (identiek aan OA, zie comments daar)
-
-            int hash = 3;
-
-            for (int i = 0; i < s.length(); i++)
-            {
-                //System.out.println(hash);
-                hash = (hash*13 + (int)s.charAt(i));
-                hash = hash%(woordenBoek.length);
-            }
-
-            // stop een waarde in de array op een lege plek
-            if(woordenBoek[hash] == null || woordenBoek[hash].isEmpty())
-            {
-
-                woordenBoek[hash] = s;
-
-            }
-            else
-            {
-                // als er daar geen lege plek is, append dan je waarde eraan
-                woordenBoek[hash] += " " + s;
-
-
-            }
-
-
-
-
-        }
-
-        // laat zien dat er een hashtable gemaakt is
-        System.out.println("Succesfully created a hashtable!");
-
-        // geef table terug aan main
-
-
-            return woordenBoek;
-        }
 }
