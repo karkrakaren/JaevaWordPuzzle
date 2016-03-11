@@ -21,6 +21,8 @@ public class Utilities {
         }
 
         int count = 0;
+
+        // manier vinden om uit te zoeken hoeveel lines een files heeft zodat de array die lengte is
         /*
         while(file.hasNextLine())
         {
@@ -50,8 +52,15 @@ public class Utilities {
             }
         }
 
+        String[] output = new String[count];
+
+        for(int i = 0; i < count; i++)
+        {
+           output[i] = readWords[i];
+        }
+
         // return de woorden die je gelezen hebt
-        return readWords;
+        return output;
     }
 
 
@@ -116,8 +125,19 @@ public class Utilities {
 
     public static String[] createScoreboard(String file){
 
-    //String[] scores = Utilities.readFile(file);
+        String[] stringscores = Utilities.readFile(file);
+        Integer[] scores = new Integer[stringscores.length];
 
-    return null;
+        for(int i = 0; i < scores.length; i++)
+        {
+            scores = Integer.valueOf(stringscores[i].charAt(2));
+        }
+
+        for(String s: scores)
+        {
+
+            System.out.println(s);
+        }
+        return null;
     }
 }
