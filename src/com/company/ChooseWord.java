@@ -17,7 +17,7 @@ public class ChooseWord {
 
 
 
-
+/*
             Character[][] board = new Character[6][4];
             for(int i = 0; i < 6; i++){
                 String line  = letters.readLine();
@@ -25,5 +25,7 @@ public class ChooseWord {
                 board[i] = letterLine;
                 System.out.println(letterLine);
             }
+            */
     }
+
 }
