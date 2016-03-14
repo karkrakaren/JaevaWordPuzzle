@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Main {
+public class Main{
 
     // om van een een ascii waarde een getal te maken
     private static final int asciiwaarde = 48;
@@ -61,7 +61,9 @@ public class Main {
         // lees het woordenboek uit de file
         String[] woordenBoek =  Utilities.readFile("woordenlijst.txt");
         // maak hier een hashtable van
-        woordenBoek = Utilities.createHashtable(woordenBoek);
+
+        Trie T = Trie.createTrie(woordenBoek);
+
 
         // maak een dubbele array van je grid
         String[][] Board = Grid.makeBoard(breedte, hoogte, "6x4_1.txt");
