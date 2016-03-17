@@ -125,7 +125,7 @@ public class Utilities {
             } else {
                 scores[i] = Integer.valueOf(line.charAt(2)) - '0';
             }
-            System.out.println(scores[i] + "," + line);
+            //System.out.println(scores[i] + "," + line);
         }
 
         return scores;

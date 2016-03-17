@@ -63,6 +63,8 @@ public class Main{
         // maak hier een hashtable van
 
         Trie T = Trie.createTrie(woordenBoek);
+        //T.printTrie(1);
+        T.searchWord("abaci");
 
 
         // maak een dubbele array van je grid

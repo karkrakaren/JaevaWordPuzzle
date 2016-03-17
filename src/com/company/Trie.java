@@ -28,8 +28,8 @@ characters (i.e. no digits, punctuation marks etc.)
 
 public class Trie{
 
-    public Trie[]  ltrie= new Trie[27];
-    public  String[]  nodetype= new String[27];
+    public Trie[]  ltrie = new Trie[27];
+    public  String[]  nodetype = new String[27];
 
 // Constructor just creates a 27 way branch (with null pointers)
 // for lower level tries (ltrie).
@@ -38,9 +38,9 @@ public class Trie{
 
     public Trie() {
 
-        for(int i=0;i<27;i++){
-            ltrie[i]=null;
-            nodetype[i]=null;
+        for(int i = 0; i < 27; i++){
+            ltrie[i] = null;
+            nodetype[i] = null;
         }
     }
 
@@ -125,7 +125,7 @@ public class Trie{
         {
             T.trieInsert(s,0);
         }
-
+        //Trie.printTrie(T, 1);
         return T;
     }
 
@@ -166,6 +166,35 @@ public class Trie{
         }
 }
 */
+    public boolean searchWord(String s){
+        Trie child = new Trie();
+        boolean word = false;
+        for(int i = 0; i < s.length(); i++) {
+            int letter = s.charAt(i) - 'a';
+            child = child.ltrie[letter];
+            System.out.println(child);
+            //ltrie[letter] = child;
+            if(child == null) {
+                System.out.println("This word is not correct");
+                break;
+            }
+            if(child.nodetype[26] != null){
+                word = true;
+            }
+        }
+        System.out.println(word);
+        return word;
+
+        /*if(child.ltrie[26] != null) {*/
+
+        /*} else {
+            System.out.println("this word is not correct");
+            return false;
+        }*/
+    }
+
+
+
 }   // end Trie Class
 
 
