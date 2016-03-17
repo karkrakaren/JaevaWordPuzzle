@@ -111,23 +111,4 @@ public class Utilities {
 
             return woordenBoek;
     }
-
-    public static int[] createScoreboard(String file){
-
-        String[] stringscores = Utilities.readFile(file);
-        int[] scores = new int[stringscores.length];
-
-        for(int i = 0; i < scores.length; i++)
-        {
-            String line = stringscores[i];
-            if(line.length() > 3) {
-                scores[i] = (Integer.valueOf(line.charAt(2)) - '0') + ('9' -'0');
-            } else {
-                scores[i] = Integer.valueOf(line.charAt(2)) - '0';
-            }
-            //System.out.println(scores[i] + "," + line);
-        }
-
-        return scores;
-    }
 }

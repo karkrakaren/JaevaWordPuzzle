@@ -18,59 +18,27 @@ public class Main{
             System.exit(1);
         }
 
-        // vraag user om hoogte van de grid
-        System.out.println("Geef hoogte in van je grid:\nmogelijke hoogtes: 6");
-
-
-        int hoogte = 0;
-
-        // met try en catch om errors te voorkomen
-        while(hoogte != 6)
-        {
-            hoogte = 0;
-            try {
-                // read wat de user input
-                hoogte = System.in.read();
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("incorrecte waarde!");
-            }
-            // userinput is in ascii, dus doe -48 voor het getal
-            hoogte -= asciiwaarde;
-
-        }
-
-        // exact hetzelfde alleen nu voor de breedte (zie boven voor hoogte)
-        System.out.println("Geef breedte in van je grid:\nmogelijke breedes: 4");
-
-        int breedte = 0;
-
-        while (breedte != 4) {
-
-            try {
-                breedte = System.in.read();
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("incorrecte waarde!");
-            }
-
-            breedte -= asciiwaarde;
-
-        }
-
         // lees het woordenboek uit de file
         String[] woordenBoek =  Utilities.readFile("woordenlijst.txt");
         // maak hier een hashtable van
 
-        Trie T = Trie.createTrie(woordenBoek);
-        //T.printTrie(1);
-        T.searchWord("abaci");
+        Trie trie = Trie.fillTrie(woordenBoek);
 
+        // zoeken of trie klopt
+        //boolean search = T.search("abacadabra");
+        //System.out.println(search);
 
         // maak een dubbele array van je grid
-        String[][] Board = Grid.makeBoard(breedte, hoogte, "6x4_1.txt");
+        Grid grid = new Grid("6x4_1.txt");
 
         // lees scores in
-        int[] letterwaarde = Utilities.createScoreboard("jaeva_letterwaarden.txt");
+        Scoreboard scoreboard = new Scoreboard("jaeva_letterwaarden.txt");
+
+        int score = scoreboard.getScore("AaAaaa");
+
+        System.out.println(score);
+
+        Solver solver = new Solver(trie, grid, scoreboard);
     }
+
 }

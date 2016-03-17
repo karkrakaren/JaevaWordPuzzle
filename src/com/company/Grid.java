@@ -10,12 +10,18 @@ import java.io.*;
 
 public class Grid {
 
-    public static String[][] makeBoard(int breedte, int hoogte, String file) {
+    String[][] grid;
+
+    public Grid(String file){
 
         String[] input = Utilities.readFile(file);
-        String[][] grid = new String[hoogte][breedte];
+
+        int hoogte = input.length;
+        int breedte = input[1].length();
+        grid = new String[hoogte][breedte];
 
         System.out.println("je grid ziet er nu zo uit:");
+
         for(int i = 0; i < hoogte; i++)
         {
 
@@ -31,8 +37,17 @@ public class Grid {
 
             System.out.print("\n");
         }
-
-        return grid;
     }
 
+    public String getValue(int hoogte, int breedte){
+
+    String waarde = String.valueOf(grid[hoogte][breedte]);
+
+    return waarde;
+    }
+
+    public String[] getNeighbours(int index)
+    {
+
+    }
 }
