@@ -56,42 +56,41 @@ public class Solver{
 
             try {
 
-                switch (i)
-                {
+                switch (i) {
                     case 0:
-                        value = inputBoard.getValue(indexh - 1,indexb - 1);
-                    break;
+                        value = inputBoard.getValue(indexh - 1, indexb - 1);
+                        break;
 
                     case 1:
-                        value = inputBoard.getValue(indexh - 1,indexb);
-                    break;
+                        value = inputBoard.getValue(indexh - 1, indexb);
+                        break;
 
                     case 2:
-                        value = inputBoard.getValue(indexh - 1,indexb + 1);
-                    break;
+                        value = inputBoard.getValue(indexh - 1, indexb + 1);
+                        break;
 
                     case 3:
-                        value = inputBoard.getValue(indexh,indexb - 1);
-                    break;
+                        value = inputBoard.getValue(indexh, indexb - 1);
+                        break;
 
                     case 4:
-                        value = inputBoard.getValue(indexh,indexb + 1);
-                    break;
+                        value = inputBoard.getValue(indexh, indexb + 1);
+                        break;
 
                     case 5:
-                        value = inputBoard.getValue(indexh + 1,indexb - 1);
-                    break;
+                        value = inputBoard.getValue(indexh + 1, indexb - 1);
+                        break;
 
                     case 6:
-                        value = inputBoard.getValue(indexh + 1,indexb);
-                    break;
+                        value = inputBoard.getValue(indexh + 1, indexb);
+                        break;
 
                     case 7:
-                        value = inputBoard.getValue(indexh + 1,indexb + 1);
-                    break;
+                        value = inputBoard.getValue(indexh + 1, indexb + 1);
+                        break;
 
                     default:
-                    break;
+                        break;
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
 
@@ -107,13 +106,12 @@ public class Solver{
             boolean isWord = inputTrie.startsWith(wordPart);
             System.out.println(isWord);
 
-            if(isWord)
-            {
+            if (isWord) {
                 path.add(wordPart);
             }
 
 
-
+        }
     }
 
 
