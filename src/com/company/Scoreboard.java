@@ -28,12 +28,12 @@ public class Scoreboard {
     {
 
         int score = 0;
+        int index = 0;
+        int multpl = 0;
 
         for(int i = 0; i < word.length(); i++)
         {
 
-            int index;
-            int multpl;
 
             char c = word.charAt(i);
             if(Character.isUpperCase(c))
@@ -46,7 +46,7 @@ public class Scoreboard {
               multpl = 1;
             }
 
-            score += scores[index] * multpl;
+            score = score + scores[index] * multpl;
         }
 
         return score;

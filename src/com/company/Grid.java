@@ -41,13 +41,12 @@ public class Grid {
 
     public String getValue(int hoogte, int breedte){
 
-    String waarde = String.valueOf(grid[hoogte][breedte]);
+    String waarde = grid[hoogte][breedte];
 
     return waarde;
     }
 
-    public String[] getNeighbours(int index)
-    {
+    public void resetBoard(Grid board){
 
     }
 }

@@ -3,6 +3,7 @@ package com.company;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.*;
 
 public class Main{
 
@@ -39,6 +40,13 @@ public class Main{
         System.out.println(score);
 
         Solver solver = new Solver(trie, grid, scoreboard);
+
+        // getClose geeft buren weer van een object
+
+
+        solver.createPath(2,1);
+
     }
+
 
 }
