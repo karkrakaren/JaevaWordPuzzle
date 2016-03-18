@@ -47,7 +47,7 @@ public class Solver{
 
                 String source = inputBoard.getValue(i, j);
                 //System.out.println(source);
-                path = searchNeighbours(i, j, source);
+                path = searchNeighbours(source, i, j);
 
                 // alle die daarvan woordbeginsels zijn
                 // vormen een mogelijke path
@@ -88,7 +88,7 @@ s
     // zo niet gooit ze eruit
 
     // functies voor alle mogelijke letters rondom een woord
-    public ArrayList<String> searchNeighbours(int indexh, int indexb, String source)
+    public ArrayList<String> searchNeighbours(String source, int indexh, int indexb)
     {
 
         ArrayList<String> neighbours = new ArrayList<>();
