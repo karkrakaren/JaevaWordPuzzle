@@ -59,6 +59,7 @@ public class Trie {
     public TrieNode searchNode(String str){
         Map<Character, TrieNode> children = root.children;
         TrieNode t = null;
+
         for(int i=0; i<str.length(); i++){
             char c = str.charAt(i);
             if(children.containsKey(c)){

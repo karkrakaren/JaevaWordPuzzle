@@ -14,7 +14,8 @@ public class Main{
         // geef geen args mee
         if (args.length != 0)
         {
-            System.out.println("\n\n Arg size invalid! \n geen argumenten meegeven!");
+            System.out.println("\n\n Arg size invalid! \ngeef twee argumenten meegeven!");
+
             System.exit(1);
         }
 
@@ -29,6 +30,7 @@ public class Main{
         //System.out.println(search);
 
         // maak een dubbele array van je grid
+
         Grid grid = new Grid("6x4_1.txt");
 
         // lees scores in
@@ -40,8 +42,9 @@ public class Main{
         //System.out.println(score);
 
         // maak een grid solver aan met de
-        Solver solver = new Solver(trie, grid, scoreboard);
 
+        Solver solver = new Solver(trie, grid, scoreboard);
+        solver.searchPath();
         // getClose geeft buren weer van een object
 
 

@@ -13,7 +13,7 @@ public class Solver{
     Grid inputBoard;
     Scoreboard inputScores;
     ArrayList<String> path;
-    ArrayList<Objects> allPaths;
+    ArrayList<ArrayList> allPaths;
     ArrayList<Integer> globalscore;
 
 
@@ -21,90 +21,78 @@ public class Solver{
 
     public Solver(Trie trie, Grid board, Scoreboard scores)
     {
-
         inputBoard = board;
-        allPaths = new ArrayList<Objects>();
-
+        allPaths = new ArrayList<>();
         inputTrie = trie;
         inputScores = scores;
-
         globalscore = new ArrayList<>();
-
-    }
-
-    // solveboard
-    public void solveBoard() {
-
-
-
-
-
 
     }
 
     // ga op zoek naar een path
     // gaat een Arraylist returen
-    public void searchPath(int indexh, int indexb) {
-
+    public void searchPath(){
         // for(rijen)
-        for(int i = 0; i < inputBoard.length(); i++ )
-        {
-            for(int i = 0; i < inputBoard.length(); i++ )
-            {
-                // for loop colums
 
+        path = new ArrayList<>();
+
+        // deze functie gaat nu 1 niveau diep
+        for(int i = 0; i < inputBoard.height; i++)
+        {
+            // for colums
+            for(int j = 0; j < inputBoard.width; j++ )
+            {
                 // ik wil elk punt op buren checken
-                searchPath(int i, int j);
+
+
+                String source = inputBoard.getValue(i, j);
+                //System.out.println(source);
+                path = searchNeighbours(i, j, source);
+
                 // alle die daarvan woordbeginsels zijn
                 // vormen een mogelijke path
-
+                // voeg al je woordbeginsels toe aan je array
+                allPaths.add(path);
 
             }
         }
 
-        // bs
-        while(allPaths.size() < 10)
+          /*
+            int counter = 0;
+
+
+            while(ArrayList<> p: allPaths)
+            {
+                p =
+                counter++
+            }
+
+            System.out.println(counter);
+s
+            */
+
+        for( ArrayList<String> s: allPaths)
         {
 
-            Grid GridToSolve = inputBoard;
+            for(String w: s)
+            {
+                System.out.println(w);
+            }
 
-            path = new ArrayList<>();
-
-            int branch = path.indexOf(path.size() - 1);
-            System.out.println(branch);
-
-            searchNeighbours(indexh, indexb, path);
-            evaluateArray(path);
         }
+
 
     }
 
     // checkt of er onderdelen van een woord in een array zitten
     // zo niet gooit ze eruit
-    public ArrayList<String> evaluateArray(ArrayList<String> path){
-
-        for(String wordPart: path)
-        {
-            //System.out.println(wordPart);
-
-            // checken of het een woorddeel is wordt gedaan met een functie uit de tree
-            // die true of false return bij het bestaan van een deel van dat woord
-            boolean isWord = inputTrie.startsWith(wordPart);
-
-            //System.out.println(isWord);
-
-            //als het een woord is voeg het dan toe aan je mogelijke te nemen paden
-            if (!isWord) {
-                path.remove(wordPart);
-            }
-        }
-
-        return path;
-    }
 
     // functies voor alle mogelijke letters rondom een woord
-    public ArrayList<String> searchNeighbours(int indexh, int indexb, ArrayList<String> path)
+    public ArrayList<String> searchNeighbours(int indexh, int indexb, String source)
     {
+
+        ArrayList<String> neighbours = new ArrayList<>();
+
         // maak een value aan
         String value = null;
         //int counter= 0;
@@ -119,53 +107,102 @@ public class Solver{
             try {
 
                 switch (i) {
+
+                    //linksboven
                     case 0:
                         value = inputBoard.getValue(indexh - 1, indexb - 1);
                         break;
-
+                    //middenboven
                     case 1:
                         value = inputBoard.getValue(indexh - 1, indexb);
                         break;
 
+                    //rechtsboven
                     case 2:
                         value = inputBoard.getValue(indexh - 1, indexb + 1);
                         break;
 
+                    //links zijkant
                     case 3:
                         value = inputBoard.getValue(indexh, indexb - 1);
                         break;
 
+                    //rechts zijkant
                     case 4:
                         value = inputBoard.getValue(indexh, indexb + 1);
                         break;
 
+                    //links onder
                     case 5:
                         value = inputBoard.getValue(indexh + 1, indexb - 1);
                         break;
 
+                    //midden onder
                     case 6:
-                        value = inputBoard.getValue(indexh + 1, indexb);
+                        value = inputBoard.getValue(indexh+1, indexb);
                         break;
 
+                    //rechts onder
                     case 7:
                         value = inputBoard.getValue(indexh + 1, indexb + 1);
                         break;
 
                     default:
+                        value = null;
                         break;
                 }
+
+                //System.out.println(value);
             }
             // bij het niet bestaan van deze waarde in de array is er een erroy
             // deze voorkom je met catch
-            catch (ArrayIndexOutOfBoundsException e) {
-
-                //System.out.println("deze variabele ligt aan de rand");
+            catch (ArrayIndexOutOfBoundsException e)
+            {
+                //System.out.println("deze variabele ligt over de rand");
                 // deze catch is puur om de error te voorkomen als we de Array out of bounds krijgen
+            }
+
+            // checken of het een woorddeel is wordt gedaan met een functie uit de tree
+            // een woordpart de oorspronkelijke letter + de buur waar je op zocht
+            // die true of false return bij het bestaan van een deel van dat woord
+            String wordPart = source + value;
+
+            boolean isWord = inputTrie.startsWith(wordPart);
+
+            //System.out.println(isWord);
+
+            //als het een woord is voeg het dan toe aan je mogelijke te nemen paden
+            if (isWord && checkValue(wordPart)) {
+                neighbours.add(wordPart);
             }
         }
 
-        return path;
+        /*
+        for(String s: neighbours)
+        {
+            System.out.println(s);
+        }*/
+
+        return neighbours;
     }
 
+    // check of je value niet een van de indicatoren is
+    public boolean checkValue(String value){
 
+        // alle cassusen toevoegen
+
+        if(value.contains("B"))
+            return false;
+        else if(value.contains("Y"))
+            return false;
+
+        return true;
+    }
+
+    // alle special cases komen hier naar voren
+    public int[] checkSpecialCases()
+    {
+
+        return null;
+    }
 }
