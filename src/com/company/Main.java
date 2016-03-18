@@ -1,7 +1,5 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
@@ -21,7 +19,7 @@ public class Main{
         }
 
         // lees het woordenboek uit de file
-        String[] woordenBoek =  Utilities.readFile("woordenlijst.txt");
+        ArrayList<String> woordenBoek =  Utilities.readFile("woordenlijst.txt");
         // maak hier een hashtable van
 
         Trie trie = Trie.fillTrie(woordenBoek);

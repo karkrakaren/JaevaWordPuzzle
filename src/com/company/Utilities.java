@@ -2,18 +2,19 @@ package com.company;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.*;
 
 /**
  * Created by Pim on 11-3-2016.
- * code geschreven om bestanden in te lezen
- * ook een hashtable bij een vorige implementatie van het woordenboek
+ * code geschreven om bestanden in te lezen mbv een arrayList
+ * ook een hashtable bij een vorige implementatie van het woordenboek.
  */
 public class Utilities {
 
     public static BufferedReader reader;
 
     // maakt een string[] van letters in een file
-    public static String[] readFile(String filename) {
+    public static ArrayList<String> readFile(String filename) {
         try {
             reader = new BufferedReader(new FileReader(filename));
         }
@@ -34,7 +35,7 @@ public class Utilities {
         */
 
         // array is x aantal lang
-        String[] readWords = new String[1000000];
+        ArrayList<String> readWords = new ArrayList<String>();
         // maak counter
         //int count = 0;
 
@@ -42,27 +43,20 @@ public class Utilities {
         while (true) {
             try {
                 String word = reader.readLine();
-                readWords[count] = word;
                 if (word == null) {
                     break;
                 }
+                readWords.add(word);
+
                 //System.out.println(word);
-                count++;
             } catch (Exception e) {
                 System.out.println("Error.");
                 break;
             }
         }
 
-        String[] output = new String[count];
-
-        for(int i = 0; i < count; i++)
-        {
-           output[i] = readWords[i];
-        }
-
         // return de woorden die je gelezen hebt
-        return output;
+        return readWords;
     }
 
         public static String [] createHashtable(String[] readWords){

@@ -74,7 +74,7 @@ public class Trie {
         return t;
     }
 
-    public static Trie fillTrie(String[] words){
+    public static Trie fillTrie(ArrayList<String> words){
 
         Trie T = new Trie();
 

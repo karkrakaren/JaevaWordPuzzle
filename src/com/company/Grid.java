@@ -1,10 +1,11 @@
 package com.company;
+import java.io.*;
+import java.util.ArrayList;
 
 /**
  * Created by Karen on 04-03-16.
+ * maakt een grid van een aantal variabelen uit een file
  */
-
-import java.io.*;
 
 
 
@@ -17,17 +18,18 @@ public class Grid {
 
     public Grid(String file){
 
-        String[] input = Utilities.readFile(file);
+        ArrayList<String> input = Utilities.readFile(file);
 
-        height = input.length;
-        width = input[1].length();
+        height = input.size();
+        width = input.get(0).length();
         grid = new String[height][width];
         boolgrid = new Boolean[height][width];
 
-        for(String s: input)
+        /*for(String s: input)
         {
             System.out.println(s);
-        }
+        }*/
+
         System.out.println("je grid ziet er nu zo uit:");
 
         String letter;
@@ -36,7 +38,7 @@ public class Grid {
         {
             for (int j = 0; j < width; j++)
             {
-                letter = String.valueOf(input[i].charAt(j));
+                letter = String.valueOf(input.get(i).charAt(j));
                 grid[i][j] = letter;
             }
         }
