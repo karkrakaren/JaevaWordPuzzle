@@ -5,12 +5,14 @@ import java.io.FileReader;
 
 /**
  * Created by Pim on 11-3-2016.
+ * code geschreven om bestanden in te lezen
+ * ook een hashtable bij een vorige implementatie van het woordenboek
  */
 public class Utilities {
 
     public static BufferedReader reader;
 
-    // maakt een hashtable van het woordenboek
+    // maakt een string[] van letters in een file
     public static String[] readFile(String filename) {
         try {
             reader = new BufferedReader(new FileReader(filename));

@@ -16,9 +16,9 @@ public class Scoreboard {
         {
             String line = stringscores[i];
             if(line.length() > 3) {
-                scores[i] = (Integer.valueOf(line.charAt(2)) - '0') + ('9' -'0');
+                scores[i] = line.charAt(2) - '0' + ('9' -'0');
             } else {
-                scores[i] = Integer.valueOf(line.charAt(2)) - '0';
+                scores[i] = line.charAt(2) - '0';
             }
             //System.out.println(scores[i] + "," + line);
         }
@@ -36,7 +36,7 @@ public class Scoreboard {
 
 
             char c = word.charAt(i);
-            if(Character.isUpperCase(c))
+            if((c == 'B') || (c == 'Y'))
             {
               score = 0;
             }

@@ -10,6 +10,7 @@ public class Main{
     // om van een een ascii waarde een getal te maken
     private static final int asciiwaarde = 48;
 
+    // main methode
     public static void main(String[] args) {
 
         // geef geen args mee
@@ -35,16 +36,16 @@ public class Main{
         // lees scores in
         Scoreboard scoreboard = new Scoreboard("jaeva_letterwaarden.txt");
 
-        int score = scoreboard.getScore("AaAaaa");
+        // test voor scores
+        //int score = scoreboard.getScore("AaAaaa");
 
-        System.out.println(score);
+        //System.out.println(score);
 
+        // maak een grid solver aan met de
         Solver solver = new Solver(trie, grid, scoreboard);
 
         // getClose geeft buren weer van een object
 
-
-        solver.createPath(2,1);
 
     }
 

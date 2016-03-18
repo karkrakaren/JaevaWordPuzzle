@@ -2,7 +2,10 @@ package com.company;
 import java.util.*;
 
 
-//http://www.programcreek.com/2014/05/leetcode-implement-trie-prefix-tree-java/
+// http://www.programcreek.com/2014/05/leetcode-implement-trie-prefix-tree-java/
+// code niet zelf geschreven van internet afkomstig
+// maakt een trie
+
 
 public class Trie {
     private TrieNode root;
@@ -61,7 +64,9 @@ public class Trie {
             if(children.containsKey(c)){
                 t = children.get(c);
                 children = t.children;
-            }else{
+            }
+            else
+            {
                 return null;
             }
         }
