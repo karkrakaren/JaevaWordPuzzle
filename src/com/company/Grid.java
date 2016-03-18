@@ -1,6 +1,6 @@
 package com.company;
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by Karen on 04-03-16.
@@ -11,8 +11,7 @@ import java.util.ArrayList;
 
 public class Grid {
 
-    String[][] grid;
-    Boolean[][] boolgrid;
+    ArrayList<GridPoint> grid;
     int height;
     int width;
 
@@ -22,13 +21,8 @@ public class Grid {
 
         height = input.size();
         width = input.get(0).length();
-        grid = new String[height][width];
-        boolgrid = new Boolean[height][width];
+        grid = new ArrayList<GridPoint>();
 
-        /*for(String s: input)
-        {
-            System.out.println(s);
-        }*/
 
         System.out.println("je grid ziet er nu zo uit:");
 
@@ -39,7 +33,8 @@ public class Grid {
             for (int j = 0; j < width; j++)
             {
                 letter = String.valueOf(input.get(i).charAt(j));
-                grid[i][j] = letter;
+                grid.add(new GridPoint(i, j, letter));
+
             }
         }
 
@@ -54,36 +49,64 @@ public class Grid {
 
     public String getValue(int hoogte, int breedte){
 
-    String waarde = grid[hoogte][breedte];
+        for(GridPoint p: grid)
+        {
+            if(p.getIndexb() == hoogte && p.getIndexh() == breedte)
+                return p.getString();
+        }
 
-    return waarde;
+    return null;
+    }
+
+    public GridPoint getPoint(int hoogte, int breedte){
+        for(GridPoint p: grid)
+        {
+            if(p.getIndexh() == hoogte && p.getIndexb() == breedte)
+                return p;
+        }
+
+        return null;
     }
 
     public void removeValue(int hoogte, int breedte){
 
         //schuif alle waarden een naar beneden die erboven liggen
-        for(int i = 0; hoogte+1 < height; i++)
-        {
-            grid[hoogte+i][breedte] = grid[hoogte+i+1][width];
-        }
+
+            for(GridPoint p: grid )
+            {
+                if(p.getIndexb() == hoogte && p.getIndexh() == breedte)
+                   p.setIndexh(hoogte);
+            }
 
     }
 
-    public void resetBoard(Grid board){
+    public boolean isEmpty(){
 
+        for(GridPoint p: grid)
+        {
+              if(!p.isEmpty())
+                  return false;
+        }
+
+        return true;
     }
 
     public void printGrid(){
-        for(int i = 0; i < height; i++)
+
+        int lastHeight = -1;
+        for(GridPoint p: grid)
         {
 
-            for(int j = 0; j < width; j++)
-            {
+            if(lastHeight != p.getIndexh() )
+                System.out.println();
 
-                System.out.print(grid[i][j] + " ");
-            }
+            System.out.print(p.getString() + " ");
 
-            System.out.print("\n");
+            lastHeight = p.getIndexh();
+
+
         }
+
+
     }
 }

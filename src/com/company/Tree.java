@@ -5,6 +5,7 @@ import javax.swing.*;
 /**
  * Created by Karen on 18-03-16.
  */
+/*
 public class Tree {
 
     private Node root;
@@ -24,3 +25,4 @@ public class Tree {
 
 
 }
+*/
