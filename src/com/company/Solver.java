@@ -37,11 +37,32 @@ public class Solver{
 
 
 
+
+
+
     }
 
     // ga op zoek naar een path
+    // gaat een Arraylist returen
     public void searchPath(int indexh, int indexb) {
 
+        // for(rijen)
+        for(int i = 0; i < inputBoard.length(); i++ )
+        {
+            for(int i = 0; i < inputBoard.length(); i++ )
+            {
+                // for loop colums
+
+                // ik wil elk punt op buren checken
+                searchPath(int i, int j);
+                // alle die daarvan woordbeginsels zijn
+                // vormen een mogelijke path
+
+
+            }
+        }
+
+        // bs
         while(allPaths.size() < 10)
         {
 
